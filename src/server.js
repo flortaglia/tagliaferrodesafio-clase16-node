@@ -26,9 +26,6 @@ const expressServer= app.listen(puerto, (err) => {
 
 const io = new IOServer(expressServer)
 
-// const messages= []
-// const productos= []
-
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname,'/public')))
@@ -58,56 +55,6 @@ const error404= (req, res,next)=>{
 //Ruta NO encontrada
 app.use(error404)
 
-// async function escribir(){
-
-//     try{
-//         await database.schema.dropTableIfExists('mensaje');
-//         console.log('drop')
-//         await database.schema.createTable('mensaje', table=>{
-//             table.increments('id').primary()
-//             table.string('mail',50)
-//             table.string('tiempochat')
-//             table.string('message')
-//         });
-//         console.log('se creo la tabla mensaje')
-//         console.log(messages)
-//         await database.from('mensaje').insert(messages);
-//         console.log('inserto mensajes tabla')
-//         let rows= await database.from('mensaje').select("*");
-//         rows.forEach((article)=>{ console.log(`${article['id']} ${article['mail']} ${article['tiempochat']}: ${article['message']}`) });
-        
-        
-//     }catch(err){
-//         console.log('no se pudo guardar el chat', err)
-        
-//     }
-
-// }
-// async function escribirProductos(){
-
-//     try{
-//         await dbMariadb.schema.dropTableIfExists('productos');
-//         console.log('drop')
-//         await database.schema.createTable('productos', table=>{
-//             table.increments('id').primary()
-//             table.string('title',50)
-//             table.decimal('price')
-//             table.string('thumbnail')
-//         });
-//         console.log('se creo la tabla productosx formulario')
-//         console.log(productos)
-//         await dbMariadb.from('productos').insert(productos);
-//         console.log('inserto productos tabla x formulario')
-//         let rows= await dbMariadb.from('productos').select("*");
-//         rows.forEach((article)=>{ console.log(`${article['id']} ${article['title']} ${article['price']}: ${article['thumbnail']}`) });
-        
-        
-//     }catch(err){
-//         console.log('no se pudo guardar el productos tabla x formulario', err)
-        
-//     }
-
-// }
 // LADO SERVIDOR
 io.on('connection', async socket=>{
     console.log('se conecto un usuario')
